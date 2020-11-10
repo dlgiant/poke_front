@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PreviousBattles from "./components/PreviousBattles";
 import RandomBattle from "./components/RandomBattle";
+import { Provider } from './Provider';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -10,8 +12,12 @@ export default class App extends Component {
   render() {
     return(
       <div>
-        <RandomBattle />
-        <PreviousBattles />
+        <Provider>
+          <div className="App">
+            <RandomBattle />
+            <PreviousBattles />
+          </div>
+        </Provider>
       </div>
     );
   }

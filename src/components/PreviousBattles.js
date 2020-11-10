@@ -1,3 +1,4 @@
+import { Context } from '../Provider';
 import React, { Component } from "react";
 
 export default class PreviousBattles extends Component {
@@ -13,10 +14,15 @@ export default class PreviousBattles extends Component {
   }
 
   componentDidMount() {
+    this.refreshBattles();
+  }
+
+  refreshBattles(context?){
     fetch(`${this.url}list`)
     .then(res => res.json())
     .then( resJson => {
       this.setState({ battles: resJson.data });
+      if (context) context.setRefresh(false);
     });
   }
 
@@ -44,6 +50,14 @@ export default class PreviousBattles extends Component {
       <div className="container">
         <br/>
         <h2>Previous Battles:</h2>
+        <Context.Consumer>
+          {(context) => (
+            <div>
+            {context.state.refreshPreviousBattles ? this.refreshBattles(context) : ''}
+            </div>
+          )}
+        </Context.Consumer>
+        
         {this.state.list && this.state.battles ? (
           <div class="row">
             {this.state.battles.map(battle => (
