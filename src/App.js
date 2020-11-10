@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Battles from "./Battles";
-import RandomBattle from "./RandomBattle";
+import PreviousBattles from "./components/PreviousBattles";
+import RandomBattle from "./components/RandomBattle";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class App extends Component {
     return(
       <div>
         <RandomBattle />
-        <Battles />
+        <PreviousBattles />
       </div>
     );
   }
